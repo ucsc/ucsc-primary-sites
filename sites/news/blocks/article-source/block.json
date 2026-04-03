@@ -1,0 +1,31 @@
+{
+	"name": "acf/article-source",
+	"title": "Article Source",
+	"description": "Displays source of an Article (ACF field) inside a query block.",
+	"category": "query",
+	"icon": "welcome-view-site",
+	"keywords": [
+		"media source"
+	],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "ucsc_news_article_source_block"
+	},
+	"supports": {
+		"jsx": true,
+		"align": false,
+		"color": {
+			"text": true,
+			"background": true
+		},
+		"inserter": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		}
+	}
+}
