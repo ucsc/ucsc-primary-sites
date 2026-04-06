@@ -1,0 +1,33 @@
+name: Build and release
+
+on:
+    push:
+        tags:
+            - 'v*.*.*'
+            - 'v*.*.*-rc.*'
+
+permissions:
+    contents: write
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4.2.2
+            - uses: actions/setup-node@v3.9.1
+              with:
+                  node-version: 24
+                  cache: 'npm'
+
+            - name: Install Node dependencies
+              run: npm install
+
+            - name: Package plugin
+              run: ./node_modules/.bin/wp-scripts plugin-zip
+
+            - name: Release
+              uses: softprops/action-gh-release@v1
+              with:
+                  files: ucsc-primary-sites.zip
+                  generate_release_notes: true

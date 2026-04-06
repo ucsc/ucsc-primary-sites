@@ -1,0 +1,45 @@
+{
+	"name": "ucsc-primary-sites",
+	"version": "1.0.0",
+	"description": "Site-specific functionality for primary UC Santa Cruz websites: www, news, and events.",
+	"author": "UC Santa Cruz Communications",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"start": "wp-scripts start --webpack-copy-php",
+		"build": "wp-scripts build --webpack-copy-php",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.15.0"
+	},
+	"files": [
+		"!package.json",
+		"includes",
+		"sites",
+		"ucsc-primary-sites.php",
+		"README.md",
+		"CHANGELOG.md",
+		"LICENSE"
+	],
+	"standard-version": {
+		"bumpFiles": [
+			{
+				"filename": "package-lock.json",
+				"type": "json"
+			},
+			{
+				"filename": "package.json",
+				"type": "json"
+			},
+			{
+				"filename": "ucsc-primary-sites.php",
+				"updater": "wp-plugin-version-updater.js"
+			}
+		]
+	}
+}
