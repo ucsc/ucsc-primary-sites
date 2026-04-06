@@ -7,8 +7,6 @@ node_modules/
 vendor/
 
 # Build artifacts
-build/
-dist/
 *.zip
 
 # Editor / IDE
@@ -31,7 +29,6 @@ error_log
 composer.lock
 
 # npm / Node
-package-lock.json
 npm-debug.log*
 
 # PHPUnit / PHPStan
