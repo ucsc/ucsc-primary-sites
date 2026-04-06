@@ -1,10 +1,17 @@
 <?php
+
 /**
- * Plugin Name: UCSC Primary Sites
- * Description: Loads site-specific functionality based on the current site URL (home_url()).
- * Version:     1.0.0
- * Author:      UC Santa Cruz
- * Text Domain: ucsc-primary-sites
+ * Plugin Name: 			UCSC Primary Sites
+ * Description: 			Site-specific functionality for the primary UC Santa Cruz websites: www, news, and events.
+ * Version:     			1.0.0
+ * Author:      			UC Santa Cruz Communications
+ * Text Domain: 			ucsc-primary-sites'
+ * Requires at least: 6.4
+ * Requires PHP: 			8.0
+ * License: 					GPL2
+ * Author URI: 				https://www.ucsc.edu
+ * Plugin URI: 				https://github.com/ucsc/ucsc-primary-sites
+ * Update URI: 				https://github.com/ucsc/ucsc-primary-sites/releases
  *
  * @package UCSC_Primary_Sites
  */
@@ -17,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'UCSC_PRIMARY_SITES_VERSION', '1.0.0' );
+define( 'UCSC_PRIMARY_SITES_VERSION', get_file_data( __FILE__, array( 'Version' => 'Version' ) )['Version'] );
 define( 'UCSC_PRIMARY_SITES_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UCSC_PRIMARY_SITES_URL', plugin_dir_url( __FILE__ ) );
 

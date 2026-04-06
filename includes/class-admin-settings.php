@@ -72,6 +72,9 @@ class Admin_Settings {
 
 		foreach ( array_keys( $groups ) as $slug ) {
 			$value = isset( $_POST['ucsc_sites'][ $slug ] ) ? sanitize_text_field( $_POST['ucsc_sites'][ $slug ] ) : 'auto';
+			if ( ! in_array( $value, array( 'on', 'off', 'auto' ), true ) ) {
+				$value = 'auto';
+			}
 			if ( 'auto' !== $value ) {
 				$overrides[ $slug ] = $value;
 			}

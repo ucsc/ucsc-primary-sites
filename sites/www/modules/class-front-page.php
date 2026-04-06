@@ -36,9 +36,12 @@ class Front_Page extends Module {
 			return $block_content;
 		}
 
-		$pattern       = '/<(div) (.*)<\/(div)>/';
-		$replacement   = '<h1 $2</h1>';
-		$block_content = preg_replace( $pattern, $replacement, $block_content );
+		// Replace the outermost wrapper div with h1.
+		$block_content = preg_replace( '/<div([\s>])/', '<h1$1', $block_content, 1 );
+		$pos = strrpos( $block_content, '</div>' );
+		if ( false !== $pos ) {
+			$block_content = substr_replace( $block_content, '</h1>', $pos, 6 );
+		}
 
 		// Only modify the first icon block per page load.
 		remove_filter( 'render_block_outermost/icon-block', array( $this, 'filter_on_front_page' ), 10 );

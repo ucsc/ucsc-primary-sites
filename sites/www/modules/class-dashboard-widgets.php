@@ -36,8 +36,6 @@ class Dashboard_Widgets extends Module {
 		remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
 		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
 		remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
-		remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' );
-		remove_meta_box( 'wpseo-wincher-dashboard-overview', 'dashboard', 'normal' );
 	}
 
 	/**
