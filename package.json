@@ -1,6 +1,6 @@
 {
 	"name": "ucsc-primary-sites",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Site-specific functionality for primary UC Santa Cruz websites: www, news, and events.",
 	"author": "UC Santa Cruz Communications",
 	"license": "GPL-2.0-or-later",
