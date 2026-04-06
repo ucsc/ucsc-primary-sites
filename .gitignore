@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+build/
+dist/
+*.zip
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.*
+
+# Debug logs
+debug.log
+error_log
+*.log
+
+# Composer
+composer.lock
+
+# npm / Node
+package-lock.json
+npm-debug.log*
+
+# PHPUnit / PHPStan
+.phpunit.result.cache
+phpstan.neon
