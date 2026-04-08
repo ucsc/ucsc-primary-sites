@@ -24,7 +24,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 	// ── WWW ──────────────────────────────────────────────────────────────
 	$registry->add_group( 'www', 'WWW', array(
 		'https://www.ucsc.edu',
-		'https://*www-ucsc*',
+		'https://*-www-ucsc.pantheonsite.io',
 	), array(
 		Front_Page::class,
 		Www_Dashboard_Widgets::class,
@@ -33,7 +33,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 	// ── News ─────────────────────────────────────────────────────────────
 	$registry->add_group( 'news', 'News', array(
 		'https://news.ucsc.edu',
-		'https://*news-ucsc*',
+		'https://*news-ucsc.pantheonsite.io*',
 	), array(
 		Media_Coverage::class,
 		News_Dashboard_Widgets::class,
@@ -43,7 +43,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 	// ── Events ───────────────────────────────────────────────────────────
 	$registry->add_group( 'events', 'Events', array(
 		'https://events.ucsc.edu',
-		'https://*events-ucsc*',
+		'https://*events-ucsc.pantheonsite.io',
 	), array(
 		Block_Bindings::class,
 		Users_Events_Column::class,
