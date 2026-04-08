@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.2.1](https://github.com/ucsc/ucsc-primary-sites/compare/v1.2.0...v1.2.1) (2026-04-08)
+
+
+### Bug Fixes
+
+* 🐛 Restrict domains to Pantheon ([0f45cb2](https://github.com/ucsc/ucsc-primary-sites/commit/0f45cb2de1bd510ebac6fad74bad189274df75ab))
+
 ## [1.2.0](https://github.com/ucsc/ucsc-primary-sites/compare/v1.1.2...v1.2.0) (2026-04-07)
 
 
