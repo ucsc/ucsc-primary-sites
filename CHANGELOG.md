@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.0](https://github.com/ucsc/ucsc-primary-sites/compare/v1.2.1...v1.3.0) (2026-05-07)
+
+
+### Features
+
+* ✨ Use our new shared release action ([6808f69](https://github.com/ucsc/ucsc-primary-sites/commit/6808f695e60297fca6499b5895ab9281aecdd50b))
+* ⬆️ Add update library ([c945611](https://github.com/ucsc/ucsc-primary-sites/commit/c945611700ba251fa283af6772148f64df9bbf80))
+
 ## [1.2.1](https://github.com/ucsc/ucsc-primary-sites/compare/v1.2.0...v1.2.1) (2026-04-08)
 
 
