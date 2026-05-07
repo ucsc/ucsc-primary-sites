@@ -1,0 +1,21 @@
+{
+  "name": "ucsantacruz/ucsc-primary-sites",
+  "description": "Extended functionality for the primary UC Santa Cruz websites",
+  "license": "MIT",
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^2.2",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+  },
+  "scripts": {
+    "lint": "./vendor/bin/phpcs",
+    "lint-fix": "./vendor/bin/phpcbf --extensions=php ."
+  },
+  "require": {
+    "yahnis-elsts/plugin-update-checker": "^5.5"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

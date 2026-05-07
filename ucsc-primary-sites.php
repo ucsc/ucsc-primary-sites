@@ -18,6 +18,8 @@
 
 namespace UCSC\PrimarySites;
 
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
 // Prevent direct access.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -27,6 +29,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'UCSC_PRIMARY_SITES_VERSION', get_file_data( __FILE__, array( 'Version' => 'Version' ) )['Version'] );
 define( 'UCSC_PRIMARY_SITES_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UCSC_PRIMARY_SITES_URL', plugin_dir_url( __FILE__ ) );
+
+// Composer autoloader (plugin-update-checker, etc.).
+require_once UCSC_PRIMARY_SITES_DIR . 'vendor/autoload.php';
+
+// GitHub release-based updates surfaced in the WP dashboard.
+$update_checker = PucFactory::buildUpdateChecker(
+	'https://github.com/ucsc/ucsc-primary-sites/',
+	__FILE__,
+	'ucsc-primary-sites'
+);
+$update_checker->setBranch( 'main' );
+
+if ( defined( 'UCSC_PRIMARY_SITES_GITHUB_TOKEN' ) ) {
+	$update_checker->setAuthentication( UCSC_PRIMARY_SITES_GITHUB_TOKEN );
+}
+
+/** @var \YahnisElsts\PluginUpdateChecker\v5p6\Vcs\GitHubApi $vcs_api */
+$vcs_api = $update_checker->getVcsApi();
+$vcs_api->enableReleaseAssets();
 
 // Autoloader.
 spl_autoload_register( function ( $class ) {
