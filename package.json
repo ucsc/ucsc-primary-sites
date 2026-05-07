@@ -20,6 +20,7 @@
 	},
 	"files": [
 		"!package.json",
+		"vendor",
 		"includes",
 		"sites",
 		"ucsc-primary-sites.php",
