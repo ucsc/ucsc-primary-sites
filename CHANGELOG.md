@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.4.0](https://github.com/ucsc/ucsc-primary-sites/compare/v1.3.1...v1.4.0) (2026-05-11)
+
+
+### Features
+
+* **all:** ✨ Add robots.txt feature on all sites to manage AI training crawler traffic ([aedef49](https://github.com/ucsc/ucsc-primary-sites/commit/aedef490aa174f1e33b8059f23c7662d945a511f)), closes [#2](https://github.com/ucsc/ucsc-primary-sites/issues/2)
+
 ## [1.3.1](https://github.com/ucsc/ucsc-primary-sites/compare/v1.3.0...v1.3.1) (2026-05-07)
 
 ## [1.3.0](https://github.com/ucsc/ucsc-primary-sites/compare/v1.2.1...v1.3.0) (2026-05-07)

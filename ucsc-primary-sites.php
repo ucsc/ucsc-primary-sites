@@ -3,7 +3,7 @@
 /**
  * Plugin Name: 			UCSC Primary Sites
  * Description: 			Site-specific functionality for the primary UC Santa Cruz websites: www, news, and events.
- * Version: 1.3.1
+ * Version: 1.4.0
  * Author:      			UC Santa Cruz Communications
  * Text Domain: 			ucsc-primary-sites'
  * Requires at least: 6.4
