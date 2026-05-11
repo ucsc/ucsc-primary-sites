@@ -19,6 +19,18 @@ Sites are matched automatically by URL pattern (e.g. `https://news.ucsc.edu`). A
 | WWW    | `www.ucsc.edu`, `*www-ucsc*`          | Front Page, Dashboard Widgets              |
 | News   | `news.ucsc.edu`, `*news-ucsc*`        | Media Coverage, Dashboard Widgets, Block Variations |
 | Events | `events.ucsc.edu`, `*events-ucsc*`    | Block Bindings, Users Events Column        |
+| Shared | all three site patterns               | Robots Generator                           |
+
+The **Shared** group exists for functionality that should apply uniformly across all UCSC primary sites. Add a module to its list in `sites/registry.php` when the behavior is not site-specific.
+
+### Robots Generator (Shared)
+
+Appends UCSC-specific rules to WordPress's generated `robots.txt` via the `robots_txt` filter. Two lists are maintained as class constants in `sites/shared/modules/class-robots-txt.php`:
+
+- `LIMITED_AGENTS` — AI training crawlers (e.g. `GPTBot`, `ClaudeBot`, `CCBot`). Each receives a `Crawl-delay` directive set by the `CRAWL_DELAY` constant.
+- `BANNED_AGENTS` — aggressive SEO scrapers and known abusive crawlers (e.g. `AhrefsBot`, `SemrushBot`, `MJ12bot`). Each receives `Disallow: /`.
+
+The module deliberately excludes AI *search* bots (e.g. `OAI-SearchBot`, `PerplexityBot`, `ChatGPT-User`), which provide user-initiated retrieval rather than training data. If a site is set to discourage indexing in **Settings > Reading**, this module leaves WP's default output unchanged.
 
 ## Adding a new module
 
@@ -35,3 +47,4 @@ Sites are matched automatically by URL pattern (e.g. `https://news.ucsc.edu`). A
 ## License
 
 This plugin is licensed under the [GPL-2.0](LICENSE).
+
