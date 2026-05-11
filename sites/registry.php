@@ -16,10 +16,24 @@ use UCSC\PrimarySites\Sites\Events\Modules\Users_Events_Column;
 use UCSC\PrimarySites\Sites\News\Modules\Block_Variations;
 use UCSC\PrimarySites\Sites\News\Modules\Dashboard_Widgets as News_Dashboard_Widgets;
 use UCSC\PrimarySites\Sites\News\Modules\Media_Coverage;
+use UCSC\PrimarySites\Sites\Shared\Modules\Robots_Txt;
 use UCSC\PrimarySites\Sites\Www\Modules\Dashboard_Widgets as Www_Dashboard_Widgets;
 use UCSC\PrimarySites\Sites\Www\Modules\Front_Page;
 
 add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) {
+
+	// ── Shared ───────────────────────────────────────────────────────────
+	// Modules in this group load on all UCSC primary sites.
+	$registry->add_group( 'shared', 'Shared (all sites)', array(
+		'https://www.ucsc.edu',
+		'https://*-www-ucsc.pantheonsite.io',
+		'https://news.ucsc.edu',
+		'https://*-news-ucsc.pantheonsite.io',
+		'https://events.ucsc.edu',
+		'https://*-events-ucsc.pantheonsite.io',
+	), array(
+		Robots_Txt::class,
+	) );
 
 	// ── WWW ──────────────────────────────────────────────────────────────
 	$registry->add_group( 'www', 'WWW', array(
@@ -33,7 +47,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 	// ── News ─────────────────────────────────────────────────────────────
 	$registry->add_group( 'news', 'News', array(
 		'https://news.ucsc.edu',
-		'https://*news-ucsc.pantheonsite.io*',
+		'https://*-news-ucsc.pantheonsite.io',
 	), array(
 		Media_Coverage::class,
 		News_Dashboard_Widgets::class,
@@ -43,7 +57,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 	// ── Events ───────────────────────────────────────────────────────────
 	$registry->add_group( 'events', 'Events', array(
 		'https://events.ucsc.edu',
-		'https://*events-ucsc.pantheonsite.io',
+		'https://*-events-ucsc.pantheonsite.io',
 	), array(
 		Block_Bindings::class,
 		Users_Events_Column::class,
