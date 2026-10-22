@@ -18,7 +18,7 @@ class Robots_Txt extends Module {
 	/**
 	 * Crawl-delay (in seconds) applied to every agent in LIMITED_AGENTS.
 	 */
-	private const CRAWL_DELAY = 120;
+	private const CRAWL_DELAY = 15;
 
 	/**
 	 * Agents we want to rate-limit (not block).
