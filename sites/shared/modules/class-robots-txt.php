@@ -26,6 +26,8 @@ class Robots_Txt extends Module {
 	 * Each entry receives a Crawl-delay of CRAWL_DELAY seconds.
 	 */
 	private const LIMITED_AGENTS = array(
+		// Amazon
+		'Amazonbot',
 		// OpenAI
 		'GPTBot',
 		// Anthropic
