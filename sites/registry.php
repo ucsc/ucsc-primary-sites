@@ -12,13 +12,16 @@ namespace UCSC\PrimarySites\Sites;
 
 use UCSC\PrimarySites\Site_Registry;
 use UCSC\PrimarySites\Sites\Events\Modules\Block_Bindings;
+use UCSC\PrimarySites\Sites\Events\Modules\Robots_Rules as Events_Robots_Rules;
 use UCSC\PrimarySites\Sites\Events\Modules\Users_Events_Column;
 use UCSC\PrimarySites\Sites\News\Modules\Block_Variations;
 use UCSC\PrimarySites\Sites\News\Modules\Dashboard_Widgets as News_Dashboard_Widgets;
 use UCSC\PrimarySites\Sites\News\Modules\Media_Coverage;
+use UCSC\PrimarySites\Sites\News\Modules\Robots_Rules as News_Robots_Rules;
 use UCSC\PrimarySites\Sites\Shared\Modules\Robots_Txt;
 use UCSC\PrimarySites\Sites\Www\Modules\Dashboard_Widgets as Www_Dashboard_Widgets;
 use UCSC\PrimarySites\Sites\Www\Modules\Front_Page;
+use UCSC\PrimarySites\Sites\Www\Modules\Robots_Rules as Www_Robots_Rules;
 
 add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) {
 
@@ -42,6 +45,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 	), array(
 		Front_Page::class,
 		Www_Dashboard_Widgets::class,
+		Www_Robots_Rules::class,
 	) );
 
 	// ── News ─────────────────────────────────────────────────────────────
@@ -52,6 +56,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 		Media_Coverage::class,
 		News_Dashboard_Widgets::class,
 		Block_Variations::class,
+		News_Robots_Rules::class,
 	) );
 
 	// ── Events ───────────────────────────────────────────────────────────
@@ -61,6 +66,7 @@ add_action( 'ucsc_primary_sites_register', function ( Site_Registry $registry ) 
 	), array(
 		Block_Bindings::class,
 		Users_Events_Column::class,
+		Events_Robots_Rules::class,
 	) );
 
 } );
