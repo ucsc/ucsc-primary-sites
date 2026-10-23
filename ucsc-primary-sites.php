@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:             UCSC Primary Sites
- * Description:             Site-specific functionality for the primary UC Santa Cruz websites: www, news, and events.
- * Version: 26.10.22
- * Author:                  UC Santa Cruz Communications
- * Text Domain:             ucsc-primary-sites'
- * Requires at least: 6.4
- * Requires PHP:            8.0
- * License:                     GPL2
- * Author URI:              https://www.ucsc.edu
- * Plugin URI:              https://github.com/ucsc/ucsc-primary-sites
- * Update URI:              https://github.com/ucsc/ucsc-primary-sites/releases
+ * Plugin Name:        UCSC Primary Sites
+ * Description:        Site-specific functionality for the primary UC Santa Cruz websites: www, news, and events.
+ * Version:            26.10.22
+ * Author:             UC Santa Cruz Communications
+ * Text Domain:        ucsc-primary-sites
+ * Requires at least:  6.4
+ * Requires PHP:       8.0
+ * License:            GPL2
+ * Author URI:         https://www.ucsc.edu
+ * Plugin URI:         https://github.com/ucsc/ucsc-primary-sites
+ * Update URI:         https://github.com/ucsc/ucsc-primary-sites/releases
  *
  * @package UCSC_Primary_Sites
  */
