@@ -17,6 +17,7 @@
 		"prepare": "husky"
 	},
 	"devDependencies": {
+		"@ucsantacruz/wordpress-version-updater": "^1.1.0",
 		"@wordpress/scripts": "^30.15.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^17.6.0"
@@ -43,7 +44,7 @@
 			},
 			{
 				"filename": "ucsc-primary-sites.php",
-				"updater": "wp-plugin-version-updater.js"
+				"updater": "node_modules/@ucsantacruz/wordpress-version-updater/index.js"
 			}
 		]
 	},
