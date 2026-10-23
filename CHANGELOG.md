@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2026.10.2](https://github.com/ucsc/ucsc-primary-sites/compare/v26.10.22...v2026.10.2) (2026-10-23)
+
+
+### Bug Fixes
+
+* ✅ Fix linting capabilities ([a426174](https://github.com/ucsc/ucsc-primary-sites/commit/a4261745f2b321d032e0f5e68ebac359865af810))
+* Commit composer lock file ([abd4f43](https://github.com/ucsc/ucsc-primary-sites/commit/abd4f430ed8e42dc78c3230f97a95c7d89a2fd20))
+
 ### [26.10.22](https://github.com/ucsc/ucsc-primary-sites/compare/v1.4.0...v26.10.22) (2026-10-22)
 
 
