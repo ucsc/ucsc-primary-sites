@@ -12,14 +12,27 @@
 
 namespace UCSC\PrimarySites;
 
+/**
+ * Settings page that overrides URL matching for each site group.
+ */
 class Admin_Settings {
 
 	private const OPTION_KEY = 'ucsc_primary_sites_overrides';
 	private const PAGE_SLUG  = 'ucsc-primary-sites';
 	private const NONCE_NAME = 'ucsc_primary_sites_nonce';
 
+	/**
+	 * Registered site groups.
+	 *
+	 * @var Site_Registry
+	 */
 	private Site_Registry $registry;
 
+	/**
+	 * Set up the class with the site registry.
+	 *
+	 * @param Site_Registry $registry Registered site groups.
+	 */
 	public function __construct( Site_Registry $registry ) {
 		$this->registry = $registry;
 	}
@@ -59,7 +72,7 @@ class Admin_Settings {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( $_POST[ self::NONCE_NAME ], self::PAGE_SLUG ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ self::NONCE_NAME ] ) ), self::PAGE_SLUG ) ) {
 			return;
 		}
 
@@ -71,7 +84,7 @@ class Admin_Settings {
 		$overrides = array();
 
 		foreach ( array_keys( $groups ) as $slug ) {
-			$value = isset( $_POST['ucsc_sites'][ $slug ] ) ? sanitize_text_field( $_POST['ucsc_sites'][ $slug ] ) : 'auto';
+			$value = isset( $_POST['ucsc_sites'][ $slug ] ) ? sanitize_text_field( wp_unslash( $_POST['ucsc_sites'][ $slug ] ) ) : 'auto';
 			if ( ! in_array( $value, array( 'on', 'off', 'auto' ), true ) ) {
 				$value = 'auto';
 			}
@@ -104,6 +117,7 @@ class Admin_Settings {
 				regardless of the current domain.
 			</p>
 
+			<?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only toggles the "Settings saved" notice. ?>
 			<?php if ( isset( $_GET['settings-updated'] ) ) : ?>
 				<div class="notice notice-success is-dismissible">
 					<p>Settings saved.</p>
@@ -121,9 +135,10 @@ class Admin_Settings {
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ( $groups as $slug => $group ) :
+						<?php
+						foreach ( $groups as $slug => $group ) :
 							$current = $overrides[ $slug ] ?? 'auto';
-						?>
+							?>
 						<tr>
 							<td><strong><?php echo esc_html( $group['label'] ); ?></strong></td>
 							<td>

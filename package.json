@@ -13,10 +13,13 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"release": "npx commit-and-tag-version"
+		"release": "npx commit-and-tag-version",
+		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.15.0"
+		"@wordpress/scripts": "^30.15.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^17.6.0"
 	},
 	"files": [
 		"!package.json",
@@ -42,6 +45,19 @@
 				"filename": "ucsc-primary-sites.php",
 				"updater": "wp-plugin-version-updater.js"
 			}
+		]
+	},
+	"lint-staged": {
+		"*.php": [
+			"sh -c 'vendor/bin/phpcbf \"$@\"; [ $? -le 2 ]' phpcbf",
+			"vendor/bin/phpcs"
+		],
+		"*.js": [
+			"wp-scripts format",
+			"wp-scripts lint-js"
+		],
+		"*.{css,scss}": [
+			"wp-scripts lint-style --fix=true"
 		]
 	}
 }

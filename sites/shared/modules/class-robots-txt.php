@@ -13,6 +13,9 @@ namespace UCSC\PrimarySites\Sites\Shared\Modules;
 
 use UCSC\PrimarySites\Module;
 
+/**
+ * Adds the shared crawler rules and per-site rules to robots.txt.
+ */
 class Robots_Txt extends Module {
 
 	/**
@@ -26,24 +29,23 @@ class Robots_Txt extends Module {
 	 * Each entry receives a Crawl-delay of CRAWL_DELAY seconds.
 	 */
 	private const LIMITED_AGENTS = array(
-		// Amazon
+		// Amazon.
 		'Amazonbot',
-		// OpenAI
-		'GPTBot',
-		// Anthropic
-		'ClaudeBot',
-		'anthropic-ai',
-		// Google (AI training opt-out token)
-		'Google-Extended',
-		// Common Crawl (feeds many training datasets)
-		'CCBot',
-		// ByteDance / TikTok
-		'Bytespider',
-		// Apple (AI training opt-out token)
+		// Apple (AI training opt-out token).
 		'Applebot-Extended',
-		// Meta
+		// ByteDance / TikTok.
+		'Bytespider',
+		// Common Crawl (feeds many training datasets).
+		'CCBot',
+		// Anthropic.
+		'ClaudeBot',
+		// Google (AI training opt-out token).
+		'Google-Extended',
+		// OpenAI.
+		'GPTBot',
+		// Meta.
 		'Meta-ExternalAgent',
-		// Others
+		// Others.
 		'cohere-ai',
 		'ImagesiftBot',
 		'Omgilibot',
@@ -72,10 +74,20 @@ class Robots_Txt extends Module {
 		'Nimbostratus-Bot',
 	);
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Robots Text';
 	}
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		// Run last so we render the final file. SEO plugins that re-parse robots.txt
 		// (AIOSEO at 10000, Yoast at 99999) mishandle groups with several
@@ -92,12 +104,12 @@ class Robots_Txt extends Module {
 	 * combined into one group.
 	 *
 	 * @param string $output The default robots.txt contents.
-	 * @param bool   $public Whether the site is set to be publicly indexable.
+	 * @param bool   $is_public Whether the site is set to be publicly indexable.
 	 * @return string
 	 */
-	public function filter_robots_txt( string $output, bool $public ): string {
+	public function filter_robots_txt( string $output, bool $is_public ): string {
 		// If the site is set to discourage indexing, leave WP's output alone.
-		if ( ! $public ) {
+		if ( ! $is_public ) {
 			return $output;
 		}
 

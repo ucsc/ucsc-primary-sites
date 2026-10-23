@@ -7,6 +7,9 @@
 
 namespace UCSC\PrimarySites;
 
+/**
+ * Base class for site-specific feature modules.
+ */
 abstract class Module {
 
 	/**

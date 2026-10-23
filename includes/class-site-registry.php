@@ -7,6 +7,9 @@
 
 namespace UCSC\PrimarySites;
 
+/**
+ * Stores site groups with their URL patterns and modules.
+ */
 class Site_Registry {
 
 	/**

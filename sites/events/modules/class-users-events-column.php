@@ -11,12 +11,25 @@ namespace UCSC\PrimarySites\Sites\Events\Modules;
 
 use UCSC\PrimarySites\Module;
 
+/**
+ * Adds an Events count column to the admin users list.
+ */
 class Users_Events_Column extends Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Users Events Column';
 	}
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		add_filter( 'manage_users_columns', array( $this, 'add_column' ) );
 		add_action( 'manage_users_custom_column', array( $this, 'populate_column' ), 10, 3 );

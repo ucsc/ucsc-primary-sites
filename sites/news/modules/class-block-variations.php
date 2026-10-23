@@ -15,12 +15,25 @@ namespace UCSC\PrimarySites\Sites\News\Modules;
 
 use UCSC\PrimarySites\Module;
 
+/**
+ * Adds query loop block variations to the News editor.
+ */
 class Block_Variations extends Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Block Variations';
 	}
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_variations' ) );
 	}

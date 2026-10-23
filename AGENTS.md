@@ -72,7 +72,8 @@ Conventions seen in existing modules:
 ## Coding standards and tooling
 
 - PHP follows WordPress Coding Standards: tabs, spaces inside parentheses, `array()` instead of `[]`, Yoda conditions, and a docblock on every method.
-  - `composer install`, then `composer lint` / `composer lint-fix` (phpcs / phpcbf with WPCS 2.x). The repo has no `phpcs.xml` ruleset, so pass `--standard=WordPress` if phpcs does not pick it up.
+  - `composer install`, then `composer lint` / `composer lint-fix` (phpcs / phpcbf with WPCS 3.x, configured in `phpcs.xml.dist`).
+  - Pre-commit hook: Husky (`.husky/pre-commit`, installed by `npm install` through the `prepare` script) runs lint-staged. The `lint-staged` config in `package.json` runs phpcbf + phpcs on staged PHP, `wp-scripts format` + `lint-js` on JS, and `wp-scripts lint-style --fix=true` on CSS. Fixes are re-staged automatically; anything left blocks the commit. Use `--fix=true`, not `--fix`: `wp-scripts` reads `--fix <file>` as a flag value and lints every CSS file. Skip once with `git commit --no-verify`.
 - JS/CSS: `npm install`, then `npm run lint:js`, `npm run lint:css`, `npm run format` (`@wordpress/scripts`).
 - The repo has no automated tests. To check a change, activate the plugin in the local WP site. Use the settings page to force a group **On**, or filter `ucsc_primary_sites_current_url`, so the module boots locally. Then check the behavior (for example, visit `/robots.txt`).
 - `vendor/`, `node_modules/`, `composer.lock`, and `*.zip` are gitignored. `package-lock.json` is committed because CI needs it.

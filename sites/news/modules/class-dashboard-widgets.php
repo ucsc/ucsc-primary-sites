@@ -14,12 +14,25 @@ namespace UCSC\PrimarySites\Sites\News\Modules;
 
 use UCSC\PrimarySites\Module;
 
+/**
+ * Customizes the admin dashboard for the News site.
+ */
 class Dashboard_Widgets extends Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Dashboard Widgets';
 	}
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		add_action( 'admin_init', array( $this, 'remove_dashboard_meta' ) );
 		add_action( 'wp_dashboard_setup', array( $this, 'register_widgets' ) );
@@ -102,13 +115,15 @@ class Dashboard_Widgets extends Module {
 	 * @return void
 	 */
 	public function render_popular_tags_widget(): void {
-		$terms = get_terms( array(
-			'taxonomy'   => 'post_tag',
-			'hide_empty' => 1,
-			'number'     => 16,
-			'orderby'    => 'count',
-			'order'      => 'DESC',
-		) );
+		$terms = get_terms(
+			array(
+				'taxonomy'   => 'post_tag',
+				'hide_empty' => 1,
+				'number'     => 16,
+				'orderby'    => 'count',
+				'order'      => 'DESC',
+			)
+		);
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			echo '<ul>';
@@ -117,7 +132,7 @@ class Dashboard_Widgets extends Module {
 					'<li><a href="%s">%s (%d)</a></li>',
 					esc_url( get_term_link( $term->term_id, 'post_tag' ) ),
 					esc_html( $term->name ),
-					$term->count
+					absint( $term->count )
 				);
 			}
 			echo '</ul>';

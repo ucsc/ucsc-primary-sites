@@ -1,16 +1,10 @@
+/* WordPress sets this ID from the dashboard widget ID. */
+/* stylelint-disable-next-line selector-id-pattern */
 #ucsc_www_meta_box_widget {
-  background-color: rgb(245, 235, 235);
-  color: rgb(10, 5, 5);
+	background-color: rgb(245, 235, 235);
+	color: rgb(10, 5, 5);
 
-  .inside {
-    p {
-    }
-
-    a {
-    }
-
-    .dashicons {
-      color: rgb(177, 11, 11);
-    }
-  }
+	.dashicons {
+		color: rgb(177, 11, 11);
+	}
 }

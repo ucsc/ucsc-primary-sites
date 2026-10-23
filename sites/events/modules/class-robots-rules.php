@@ -11,8 +11,16 @@ namespace UCSC\PrimarySites\Sites\Events\Modules;
 
 use UCSC\PrimarySites\Robots_Rules_Module;
 
+/**
+ * Adds the robots.txt rules for the Events site.
+ */
 class Robots_Rules extends Robots_Rules_Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Events Robots Rules';
 	}
@@ -52,7 +60,7 @@ class Robots_Rules extends Robots_Rules_Module {
 				'Disallow: /*?*event_types',
 				'Disallow: /*?*related_series=',
 				'Disallow: /wp-json/tribe/views/',
-			 ),
-			);
+			),
+		);
 	}
 }

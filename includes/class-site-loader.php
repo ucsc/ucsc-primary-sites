@@ -7,8 +7,16 @@
 
 namespace UCSC\PrimarySites;
 
+/**
+ * Boots the modules that match the current site URL.
+ */
 class Site_Loader {
 
+	/**
+	 * Registered site groups.
+	 *
+	 * @var Site_Registry
+	 */
 	private Site_Registry $registry;
 
 	/**
@@ -18,6 +26,11 @@ class Site_Loader {
 	 */
 	private array $active_modules = array();
 
+	/**
+	 * Set up the class with the site registry.
+	 *
+	 * @param Site_Registry $registry Registered site groups.
+	 */
 	public function __construct( Site_Registry $registry ) {
 		$this->registry = $registry;
 	}
@@ -35,8 +48,8 @@ class Site_Loader {
 			return;
 		}
 
-		foreach ( $classes as $class ) {
-			$module = $this->instantiate_module( $class );
+		foreach ( $classes as $class_name ) {
+			$module = $this->instantiate_module( $class_name );
 			if ( $module ) {
 				$this->active_modules[] = $module;
 			}
@@ -79,22 +92,26 @@ class Site_Loader {
 	/**
 	 * Validate and instantiate a single module.
 	 *
-	 * @param string $class Fully-qualified class name.
+	 * @param string $class_name Fully-qualified class name.
 	 * @return Module|null The booted module, or null on failure.
 	 */
-	private function instantiate_module( string $class ): ?Module {
-		if ( ! class_exists( $class ) ) {
-			$this->log_error( "Module class not found: {$class}" );
+	private function instantiate_module( string $class_name ): ?Module {
+		if ( ! class_exists( $class_name ) ) {
+			$this->log_error( "Module class not found: {$class_name}" );
 			return null;
 		}
 
-		if ( ! is_subclass_of( $class, Module::class ) ) {
-			$this->log_error( "Class {$class} does not extend " . Module::class );
+		if ( ! is_subclass_of( $class_name, Module::class ) ) {
+			$this->log_error( "Class {$class_name} does not extend " . Module::class );
 			return null;
 		}
 
-		/** @var Module $module */
-		$module = new $class();
+		/**
+		 * The module instance; the checks above make sure it extends Module.
+		 *
+		 * @var Module $module
+		 */
+		$module = new $class_name();
 
 		// Modules can declare dependencies; skip if unmet.
 		if ( ! $module->can_load() ) {

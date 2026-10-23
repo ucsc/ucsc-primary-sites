@@ -12,8 +12,16 @@ namespace UCSC\PrimarySites\Sites\News\Modules;
 
 use UCSC\PrimarySites\Module;
 
+/**
+ * Registers the Media Coverage post type, fields, block, and redirects.
+ */
 class Media_Coverage extends Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Media Coverage';
 	}
@@ -25,6 +33,11 @@ class Media_Coverage extends Module {
 		return function_exists( 'acf_add_local_field_group' );
 	}
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		// Post type.
 		add_action( 'init', array( $this, 'register_post_type' ) );
@@ -67,21 +80,21 @@ class Media_Coverage extends Module {
 		);
 
 		$args = array(
-			'labels'              => $labels,
-			'public'              => true,
-			'publicly_queryable'  => true,
-			'show_ui'             => true,
-			'show_in_menu'        => true,
-			'show_in_rest'        => true,
-			'query_var'           => true,
-			'rewrite'             => true,
-			'capability_type'     => 'post',
-			'has_archive'         => true,
-			'hierarchical'        => false,
-			'menu_icon'           => 'dashicons-welcome-view-site',
-			'menu_position'       => 23,
-			'supports'            => array( 'author', 'editor', 'excerpt', 'thumbnail', 'title' ),
-			'taxonomies'          => array( 'post_tag', 'category' ),
+			'labels'             => $labels,
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'show_in_rest'       => true,
+			'query_var'          => true,
+			'rewrite'            => true,
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_icon'          => 'dashicons-welcome-view-site',
+			'menu_position'      => 23,
+			'supports'           => array( 'author', 'editor', 'excerpt', 'thumbnail', 'title' ),
+			'taxonomies'         => array( 'post_tag', 'category' ),
 		);
 
 		register_post_type( 'media_coverage', $args );
@@ -95,42 +108,44 @@ class Media_Coverage extends Module {
 	 * @return void
 	 */
 	public function register_acf_fields(): void {
-		acf_add_local_field_group( array(
-			'key'                => 'group_ucsc_media_coverage_field_group',
-			'title'              => 'Media Coverage',
-			'fields'             => array(
-				array(
-					'key'          => 'field_ucsc_media_coverage_field_article_source',
-					'label'        => 'Article Source',
-					'name'         => 'article_source',
-					'type'         => 'text',
-					'required'     => 0,
-				),
-				array(
-					'key'          => 'field_ucsc_media_coverage_field_article_url',
-					'label'        => 'Article URL',
-					'name'         => 'article_url',
-					'type'         => 'url',
-					'required'     => 0,
-				),
-			),
-			'location'           => array(
-				array(
+		acf_add_local_field_group(
+			array(
+				'key'                   => 'group_ucsc_media_coverage_field_group',
+				'title'                 => 'Media Coverage',
+				'fields'                => array(
 					array(
-						'param'    => 'post_type',
-						'operator' => '==',
-						'value'    => 'media_coverage',
+						'key'      => 'field_ucsc_media_coverage_field_article_source',
+						'label'    => 'Article Source',
+						'name'     => 'article_source',
+						'type'     => 'text',
+						'required' => 0,
+					),
+					array(
+						'key'      => 'field_ucsc_media_coverage_field_article_url',
+						'label'    => 'Article URL',
+						'name'     => 'article_url',
+						'type'     => 'url',
+						'required' => 0,
 					),
 				),
-			),
-			'menu_order'         => 0,
-			'position'           => 'normal',
-			'style'              => 'default',
-			'label_placement'    => 'top',
-			'instruction_placement' => 'label',
-			'active'             => true,
-			'show_in_rest'       => 0,
-		) );
+				'location'              => array(
+					array(
+						array(
+							'param'    => 'post_type',
+							'operator' => '==',
+							'value'    => 'media_coverage',
+						),
+					),
+				),
+				'menu_order'            => 0,
+				'position'              => 'normal',
+				'style'                 => 'default',
+				'label_placement'       => 'top',
+				'instruction_placement' => 'label',
+				'active'                => true,
+				'show_in_rest'          => 0,
+			)
+		);
 	}
 
 	// ─── Blocks ─────────────────────────────────────────────────────────
@@ -146,12 +161,18 @@ class Media_Coverage extends Module {
 	public function register_blocks(): void {
 		// Define the global callback ACF expects (from block.json).
 		if ( ! function_exists( 'ucsc_news_article_source_block' ) ) {
+			/**
+			 * Render the Article Source block.
+			 *
+			 * @param array $block Block settings and attributes.
+			 * @return void
+			 */
 			function ucsc_news_article_source_block( $block ) {
 				$post_id        = get_the_ID();
 				$article_source = get_field( 'article_source', $post_id );
 				$attrs          = get_block_wrapper_attributes();
 				?>
-				<p <?php echo $attrs; ?>>
+				<p <?php echo $attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() returns escaped output. ?>>
 					<?php echo esc_html( $article_source ); ?>
 				</p>
 				<?php
@@ -197,6 +218,7 @@ class Media_Coverage extends Module {
 		$external_url = get_field( 'article_url', get_the_ID() );
 
 		if ( ! empty( $external_url ) && filter_var( $external_url, FILTER_VALIDATE_URL ) ) {
+			// phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Media Coverage links point to outside news sites by design.
 			wp_redirect( $external_url, 301 );
 			exit;
 		}

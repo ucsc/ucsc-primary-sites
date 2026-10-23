@@ -11,12 +11,25 @@ namespace UCSC\PrimarySites\Sites\Www\Modules;
 
 use UCSC\PrimarySites\Module;
 
+/**
+ * Replaces the icon block wrapper with an h1 on the front page.
+ */
 class Front_Page extends Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Front Page';
 	}
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		add_filter( 'render_block_outermost/icon-block', array( $this, 'filter_on_front_page' ), 10, 2 );
 	}
@@ -38,7 +51,7 @@ class Front_Page extends Module {
 
 		// Replace the outermost wrapper div with h1.
 		$block_content = preg_replace( '/<div([\s>])/', '<h1$1', $block_content, 1 );
-		$pos = strrpos( $block_content, '</div>' );
+		$pos           = strrpos( $block_content, '</div>' );
 		if ( false !== $pos ) {
 			$block_content = substr_replace( $block_content, '</h1>', $pos, 6 );
 		}

@@ -11,6 +11,9 @@
 
 namespace UCSC\PrimarySites;
 
+/**
+ * Base class for modules that add robots.txt rules for one site.
+ */
 abstract class Robots_Rules_Module extends Module {
 
 	/**
@@ -28,6 +31,11 @@ abstract class Robots_Rules_Module extends Module {
 	 */
 	abstract public function get_rules(): array;
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		add_filter( 'ucsc_primary_sites_robots_rules', array( $this, 'add_rules' ) );
 	}

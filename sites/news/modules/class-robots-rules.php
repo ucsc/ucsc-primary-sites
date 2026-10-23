@@ -11,8 +11,16 @@ namespace UCSC\PrimarySites\Sites\News\Modules;
 
 use UCSC\PrimarySites\Robots_Rules_Module;
 
+/**
+ * Adds the robots.txt rules for the News site.
+ */
 class Robots_Rules extends Robots_Rules_Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'News Robots Rules';
 	}

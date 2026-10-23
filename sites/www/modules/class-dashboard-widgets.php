@@ -13,12 +13,25 @@ namespace UCSC\PrimarySites\Sites\Www\Modules;
 
 use UCSC\PrimarySites\Module;
 
+/**
+ * Customizes the admin dashboard for the WWW site.
+ */
 class Dashboard_Widgets extends Module {
 
+	/**
+	 * Get the human-readable name of this module.
+	 *
+	 * @return string
+	 */
 	public function get_name(): string {
 		return 'Dashboard Widgets';
 	}
 
+	/**
+	 * Register this module's hooks.
+	 *
+	 * @return void
+	 */
 	public function boot(): void {
 		add_action( 'admin_init', array( $this, 'remove_dashboard_meta' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
